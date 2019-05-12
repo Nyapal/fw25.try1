@@ -3,7 +3,51 @@
     <title> Viz 1 </title>
   </head>
   <body>
-    <h1> Viz 1 </h1>
+    <div id="container">
+    </div>
+    <script>
+      fetch('titanic-passengers.json')
+      .then(res => res.json())
+      .then(json => {
+        handleData(json)
+      })
+      .catch(err => console.log(err.message))
+
+      // creates graph
+      function makeGraph (data, filter, colors, width = 900, height = 400) {
+        const container = document.createElement('div')
+        container.style.width = `${width}px`
+        container.style.height = `${height}px`
+        
+        const step = width / data.length * 2
+        container.style.position = 'relative'
+
+        for (let i = 0; i < data.length; i++) {
+          const el = document.createElement('div')
+          container.appendChild(el)
+          el.style.position = 'absolute'
+          if (data[i].sex === filter) {
+            el.style.backgroundColor = colors[0]
+          } else {
+            el.style.backgroundColor = colors[1]
+          }
+          el.style.height = `${data[i].fare}px`
+          el.style.width = `${step}px`
+          el.style.left = `${step * i}px`
+          el.style.bottom = '0'
+        }
+        return container
+      }
+
+      function handleData(data) {
+        const betterData = data.map(passengers => passengers.fields)
+
+        const allFares = betterData.map(fields => fields.fare).filter((fare) => {return fare !== undefined})
+
+        const allPassengersFaresGraph = makeGraph(betterData, 'female', ['pink', '#3366ff'])
+        document.querySelector('body').appendChild(allPassengersFaresGraph)
+      }
+    </script>
     
   </body>
 </html>
