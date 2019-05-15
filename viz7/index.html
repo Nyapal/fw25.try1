@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title> Nyapal's Final </title>
+  </head>
+  <body>
+    <script>
+      fetch('titanic-passengers.json')
+      .then(res => res.json())
+      .then(json => {
+        handleData(json)
+      })
+      .catch(err => console.log(err.message))
+
+      function handleData(data) {
+        console.log(data)
+        // const betterData = data.map(passengers => passengers.fields)
+
+        // const allFares = betterData.map(fields => fields.fare).filter((fare) => {return fare !== undefined})
+
+        // const allPassengersFaresGraph = makeGraph(betterData, 'female', ['pink', '#3366ff'])
+        // document.querySelector('body').appendChild(allPassengersFaresGraph)
+      }
+    </script>
+  </body>
+</html>
