@@ -19,19 +19,19 @@
         console.log(data)
 
         const rating = data.map(idk => idk.rating)
-        return rating
+      
+        let myChart = document.getElementById('myChart').getContext('2d');
+  
+        let cerealRating = new Chart(myChart, {
+          type: 'bar',
+          data: {
+            datasets: [{
+              data: [rating]
+            }]
+          }
+        })
       }
 
-      let myChart = document.getElementById('myChart').getContext('2d');
-
-      let cerealRating = new Chart(myChart, {
-        type: 'bar',
-        data: {
-          datasets: [{
-            data: [rating]
-          }]
-        }
-      })
     </script>
   </body>
 </html>
