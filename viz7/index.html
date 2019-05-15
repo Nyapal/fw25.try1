@@ -1,5 +1,6 @@
 <html>
   <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <title> Nyapal's Final </title>
   </head>
   <body>
@@ -13,6 +14,11 @@
 
       function handleData(data) {
         console.log(data)
+
+        const rating = data.map(idk => idk.rating)
+
+        console.log(rating)
+
         // const betterData = data.map(passengers => passengers.fields)
 
         // const allFares = betterData.map(fields => fields.fare).filter((fare) => {return fare !== undefined})
