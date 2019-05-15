@@ -4,6 +4,9 @@
     <title> Nyapal's Final </title>
   </head>
   <body>
+    <div class="container">
+      <canvas id="myChart"></canvas>
+    </div>
     <script>
       fetch('cereal.json')
       .then(res => res.json())
@@ -16,16 +19,19 @@
         console.log(data)
 
         const rating = data.map(idk => idk.rating)
-
-        console.log(rating)
-
-        // const betterData = data.map(passengers => passengers.fields)
-
-        // const allFares = betterData.map(fields => fields.fare).filter((fare) => {return fare !== undefined})
-
-        // const allPassengersFaresGraph = makeGraph(betterData, 'female', ['pink', '#3366ff'])
-        // document.querySelector('body').appendChild(allPassengersFaresGraph)
+        return rating
       }
+
+      let myChart = document.getElementById('myChart').getContext('2d');
+
+      let cerealRating = new Chart(myChart, {
+        type: 'bar',
+        data: {
+          datasets: [{
+            data: [rating]
+          }]
+        }
+      })
     </script>
   </body>
 </html>
